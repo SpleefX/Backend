@@ -1,0 +1,13 @@
+version: '3.3'
+services:
+  app:
+    image: ghcr.io/spleefx/spleefx-web-api:master
+    ports:
+      - "443:443"
+    container_name: spleefx-web
+    volumes:
+      - /etc/letsencrypt/live/spleefx.net/:/etc/letsencrypt/live/spleefx.net/
+      - ./data:/root/spleefx-web/data
+  db:
+    image: "redis:alpine"
+    container_name: redis
