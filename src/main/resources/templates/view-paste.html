@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	
+	<!-- Head, binding, meta stuff -->
+	<head>
+		<meta charset="UTF-8"/>
+		<link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+		
+		<title>Paste #[[${id}]] - SpleefX Paste</title>
+		
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+		<link th:rel="stylesheet" th:href="@{/css/paste-style.css}"/>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	</head>
+	
+	<!-- The page body -->
+	<body>
+		
+		<!-- The page header -->
+		<header>
+			<div th:text="${id}" id="pasteTitle"><strong>[[${id}]]</strong></div>
+			<div th:text="${cont}" class="readable" id="cont"><strong>[[${cont}]]</strong></div>
+			<div class="buttons">
+				
+				<button id="raw" onclick="viewRaw()">
+					<strong>View raw</strong>
+				</button>
+				
+				<button id="copyText" onclick="copyText()">
+					<strong>Copy text</strong>
+				</button>
+				
+				<button id="copyURL" onclick="copyURL()">
+					<strong>Copy paste URL</strong>
+				</button>
+				
+				<button id="createNew" onclick="createNew()">
+					<strong>Create new</strong>
+				</button>
+			</div>
+		</header>
+		<div>
+			<label for="pasteBox"></label><textarea id="pasteBox" placeholder="Loading..." readonly></textarea>
+		</div>
+		<script th:src="@{/js/viewPaste.js}"></script>
+	</body>
+</html>

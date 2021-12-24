@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+		<title>Search for '[[${query}]]' | SpleefX Wiki</title>
+		<script
+				src="https://code.jquery.com/jquery-3.5.1.min.js"
+				integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+				crossorigin="anonymous"
+		></script>
+		<link
+				href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,700&display=swap"
+				rel="stylesheet"
+		/>
+		<link th:rel="stylesheet" th:href="@{/css/markdown.css}"/>
+		<link th:rel="stylesheet" th:href="@{/css/scroll-bars.css}">
+		<style>
+			#count:after {
+				border-bottom: none;
+			}
+			
+			.result {
+				margin-left: 20px;
+			}
+		</style>
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+	</head>
+	<body>
+		
+		<div class="readable" id="_sidebar">[[${sidebar}]]</div>
+		<div class="readable" id="_results">[[${results}]]</div>
+		<div class="readable" id="_query">[[${query}]]</div>
+		<div class="readable" id="_resultcount">[[${resultCount}]]</div>
+		<div id="sidebar" class="sidebar"><p class="sidebar_title" id="sidebar_title">Page content</p></div>
+		<section class="page" id="page">
+		</section>
+		<script th:src="@{/js/sidebar.js}"></script>
+		<script>
+			const page = document.getElementById("page")
+			const results = JSON.parse(document.getElementById("_results").innerHTML)
+			
+			if (Object.keys(results).length === 0) {
+				const child = document.createElement("h1")
+				child.innerHTML = "I couldn't find anything matching '" + document.getElementById("_query").innerHTML + "'. :("
+				child.id = "count"
+				child.className = "result"
+				page.appendChild(child)
+				addSearchAgain()
+			} else {
+				const header = document.createElement("h1")
+				header.className = "result"
+				header.id = "count"
+				header.innerHTML = "Displaying " + $("#_resultcount").html() + " results for query '" + $("#_query").html() + "'"
+				page.appendChild(header)
+				for (const nameWithDashes in results) {
+					const description = results[nameWithDashes]
+					const h1 = document.createElement("h2")
+					const anchor = document.createElement("a")
+					anchor.href = "/wiki/" + nameWithDashes
+					anchor.innerHTML = nameWithDashes.replaceAll("-", " ")
+					h1.className = "result"
+					h1.appendChild(anchor)
+					page.appendChild(h1)
+					const p = document.createElement("p")
+					p.innerHTML = description
+					p.className = "result"
+					page.appendChild(p)
+				}
+				addSearchAgain()
+				
+				const allAnchors = sidebar.getElementsByTagName("a")
+				for (let i = 0; i < allAnchors.length; i++) {
+					const an = allAnchors[i]
+					an.href = an.href.replace(window.location.host, window.location.host + "/wiki")
+				}
+			}
+			
+			function addSearchAgain() {
+				const searchAgain = document.createElement("h3")
+				
+				searchAgain.className = "result"
+				
+				const searchAgainAnchor = document.createElement("a")
+				searchAgainAnchor.href = "/wiki/search"
+				searchAgainAnchor.innerHTML = "Search again?"
+				searchAgain.appendChild(searchAgainAnchor)
+				page.appendChild(searchAgain)
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8" />
+		<title>Debug</title>
+		<link
+				rel="stylesheet"
+				href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/styles/default.min.css"
+		/>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+				href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap"
+				rel="stylesheet"
+		/>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.3.2/highlight.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+		<script src="//cdn.jsdelivr.net/npm/highlightjs-line-numbers.js@2.8.0/dist/highlightjs-line-numbers.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+		<style>
+			body,
+			.hljs {
+				background-color: rgb(15, 18, 15);
+				font-family: "Fira Code", monospace;
+				font-size: 13px;
+			}
+			
+			.hljs-attr {
+				/* the json property keys */
+				color: rgb(255, 92, 45);
+			}
+			
+			.hljs-ln-numbers {
+				-webkit-touch-callout: none;
+				-webkit-user-select: none;
+				-khtml-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+				
+				text-align: center;
+				color: rgb(238, 229, 229);
+				border-right: 25px solid rgb(15, 18, 15);
+				vertical-align: top;
+				padding-right: 5px;
+			}
+			
+			.bracket {
+				color: rgb(200, 200, 200);
+			}
+			
+			.comma,
+			.colon {
+				color: #5c7ab8;
+			}
+			
+			.hljs-string {
+				color: rgb(183, 211, 0);
+			}
+			
+			.hljs-number {
+				color: lightblue;
+			}
+			
+			.hljs-literal {
+				color: yellow;
+			}
+			.redacted {
+				color: red;
+			}
+		
+		
+		</style>
+	</head>
+	<body>
+        <pre><code th:text="${cont}" id="text" class="json">
+            [[${cont}]]
+        </code></pre>
+	</body>
+	<script>
+		const brackets = ["[", "]", "{", "}"];
+		const redacted = ["\"REDACTED\""]
+		hljs.initHighlightingOnLoad();
+		hljs.initLineNumbersOnLoad({
+			singleLine: true,
+		});
+		const json = document.getElementById("text");
+		json.innerHTML = JSON.stringify(
+				JSON.parse(json.innerHTML.trim()),
+				null,
+				2
+		);
+		
+		function replaceChars(string, toReplace, replace, to) {
+			// For all matching elements
+			$(string).each(function () {
+				// Get contents of string
+				let toReplace = $(this).html();
+				
+				let content = "";
+				let i = 0, len = toReplace.length;
+				for (; i < len; i++) {
+					const value = toReplace[i];
+					if (replace.includes(value))
+						content +=
+								'<span class="' + to + '">' + value + "</span>";
+					else content += value;
+				}
+				
+				// Replace original string with constructed html string
+				$(this).html(content);
+			});
+		}
+		
+		$("document").ready(function () {
+			const text = $("#text");
+			const split = text.html().split("");
+			replaceChars(text, split, [":", ","], "colon");
+			replaceChars(text, split, brackets, "bracket");
+			replaceChars(text, split, redacted, "redacted");
+		});
+	</script>
+</html>

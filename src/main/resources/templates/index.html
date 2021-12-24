@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		<title>SpleefX</title>
+		<link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+		<link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/css?family=Raleway"
+		/>
+		<script
+				src="https://kit.fontawesome.com/f9994f8cea.js"
+				crossorigin="anonymous"
+		></script>
+	</head>
+	<style>
+		* {
+			font-family: Raleway;
+		}
+		
+		body {
+			background-color: rgb(43, 43, 43);
+		}
+		
+		header {
+			margin: 40px;
+		}
+		
+		header #head {
+			font-size: 80px;
+			color: darkturquoise;
+		}
+		
+		header #subheader {
+			font-size: 30px;
+			margin-top: 30px;
+			color: rgb(255, 83, 183);
+		}
+		
+		.navigation {
+			color: white;
+			list-style-type: none;
+		}
+		
+		.navigation li {
+			display: inline-block;
+			margin: 35px 55px 15px 0;
+			text-transform: uppercase;
+			font-size: 20px;
+		}
+		
+		.navigation li a {
+			color: white;
+			text-decoration: none;
+			transition: 0.3s;
+		}
+		
+		.navigation li a:hover {
+			color: rgb(42, 255, 106);
+			text-decoration: none;
+		}
+		
+		#boxes ul {
+			list-style-type: none;
+			text-align: center;
+		}
+		
+		#boxes ul li {
+			color: rgb(31, 131, 131);
+			font-size: 23px;
+			display: inline-table;
+			padding-top: 20px;
+			border-radius: 10px;
+			width: 270px;
+			height: 400px;
+			margin: 40px;
+			background-color: white;
+		}
+		
+		#boxes .card {
+			font-weight: bold;
+			font-size: 30px;
+		}
+		
+		#boxes .card-description {
+			margin-top: 20px;
+			text-align: left;
+			padding: 0 10px;
+		}
+		
+		.customizable::before {
+			font-family: FontAwesome;
+			content: "\f4fb";
+			margin-right: 2px;
+		}
+		
+		.simple::before {
+			font-family: FontAwesome;
+			content: "\f215";
+			margin-right: 5px;
+		}
+		
+		.performant::before {
+			font-family: FontAwesome;
+			content: "\f299";
+			margin-right: 5px;
+		}
+		
+		.powerful::before {
+			font-family: FontAwesome;
+			content: "\f753";
+			margin-right: 5px;
+		}
+	</style>
+	<body>
+		<div>
+			<ul class="navigation">
+				<li><a href="https://spleefx.net/spigot">Spigot</a></li>
+				<li><a href="https://spleefx.net/discord">Discord</a></li>
+				<li><a href="https://spleefx.net/paste">Paste</a></li>
+				<li><a href="https://spleefx.net/">GitHub</a></li>
+				<li><a href="https://spleefx.net/wiki">Wiki</a></li>
+			</ul>
+		</div>
+		
+		<!-- The header -->
+		<header>
+			<div id="head"><strong>SpleefX</strong></div>
+			<div id="subheader">
+				The most powerful, compatible, simple yet advanced plugin
+				<br/>to run your spleef, splegg and bow spleef minigames.
+			</div>
+		</header>
+		
+		<!-- The boxes -->
+		<div id="boxes">
+			<ul>
+				<li style="box-shadow: #0b08a0 0 0 10px; color: #0b08a0;">
+					<div class="card customizable" style="color: #0b08a0;">
+						Customizable
+					</div>
+					<div class="card-description">
+						The plugin comes with a bunch of different configuration files and options
+						to allow you to fully control your gameplay! <br> Every game mode gets its own set of options
+						for a fully customizable experience
+					</div>
+				</li>
+				<li style="box-shadow: #504206 0 0 10px; color: #504206;">
+					<div class="card simple" style="color: #504206;">
+						Simple
+					</div>
+					<div class="card-description">
+						Despite the countless features and configurable options, we ensure that the process of setting
+						up and using is
+						as simple as possible, to all users including those with zero background experience. <br><br>
+						<strong>We love GUIs.</strong>
+					</div>
+				</li>
+				<li style="box-shadow: #0f7e27 0 0 10px; color: #0f7e27;">
+					<div class="card performant" style="color: #0f7e27;">
+						Performant
+					</div>
+					<div class="card-description">
+						SpleefX was built with extensive effort put in optimizing it and ensuring it to be as fast and
+						lightweight as
+						possible. Through use of multi-threading and smart cache, SpleefX comes off as light as feather.
+						<br>
+						<strong>Who likes lag? Definitely not us.</strong>
+					</div>
+				</li>
+				<li style="box-shadow: #bd0000 0 0 10px; color: #bd0000;">
+					<div class="card powerful" style="color: #bd0000;">
+						Powerful
+					</div>
+					<div class="card-description">
+						Through the upcoming statistics web UI, in-game music tracks, and a lot of "small" details, we
+						have all
+						you need to take your gaming experience to the next level.
+						<br><br><strong>Feeling like gaming today? We got you.</strong>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>

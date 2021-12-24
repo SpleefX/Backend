@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8"/>
+		
+		<meta id="og_site_name" property="og:site_name" content="SpleefX Stats">
+		<meta id="og_url" property="og:url" content="https://spleefx.net">
+		<meta id="og_title" property="og:title" content="">
+		<meta id="og_desc" property="og:description" content="">
+		<meta property="og:type" content="website">
+		<meta name="theme-color" content="#00b4e0">
+		
+		<title>Stats</title>
+		<link th:rel="stylesheet" th:href="@{/css/stats-styles.css}"/>
+		<link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+		<link
+				href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap"
+				rel="stylesheet"
+		/>
+		<link
+				href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap"
+				rel="stylesheet"
+		/>
+		<link
+				href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@700&display=swap"
+				rel="stylesheet"
+		/>
+	</head>
+	<body class="blurry">
+		<div class="readable" id="payload">[[${payload}]]</div>
+		<div class="readable" id="gameID">[[${id}]]</div>
+		<div>
+			<header>
+				<div id="mode">
+					<div id="modename"></div>
+					<div id="game-summary">games.spleefx.net</div>
+				</div>
+			</header>
+			<table id="table">
+			
+			</table>
+		</div>
+		<script th:src="@{/js/stats-loader.js}"></script>
+	</body>
+</html>

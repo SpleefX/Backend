@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+	
+	<!-- Head, binding and meta stuff -->
+	<head>
+		<title>SpleefX Bin</title>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway"/>
+		<link rel="icon" type="image/x-icon" th:href="@{/img/favicon.ico}"/>
+		<link th:rel="stylesheet" th:href="@{/css/paste-style.css}"/>
+	</head>
+	
+	<body>
+		
+		<!-- Header stuff -->
+		<header>
+			<div id="big-header"><strong>SpleefX - Paste</strong></div>
+			<div id="sub-header">Because we like having our own stuff.</div>
+		</header>
+		
+		<!-- Button stuff -->
+		<div>
+			<button onclick="createPaste()">Submit</button>
+		</div>
+		
+		<!-- Binding + Text areas -->
+		<script th:src="@{/js/paster.js}"></script>
+		<div id="size">
+			<textarea id="pasteBox" spellcheck="false" placeholder="Type or paste your content here"></textarea>
+		</div>
+	</body>
+</html>
