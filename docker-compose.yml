@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   app:
-    image: ghcr.io/spleefx/spleefx-web-api:master
+    image: ghcr.io/spleefx/backend:master
     ports:
       - "443:443"
     container_name: spleefx-web
